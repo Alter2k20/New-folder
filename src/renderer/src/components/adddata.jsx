@@ -1,13 +1,10 @@
 import { useState } from 'react'
-import { writeDataToFile } from '../../../main/index.js'
 
 function Adddata() {
   const [data, setdata] = useState('')
   // const [date, setdate] = useState(Date())
 
-  function savedata() {
-    writeDataToFile(data)
-  }
+  function savedata() {}
 
   return (
     <div>
