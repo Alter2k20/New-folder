@@ -1,11 +1,11 @@
 // import Versions from './components/Versions'
 // import electronLogo from './assets/electron.svg'
-import Adddata from './components/adddata'
+import TransactionForm from './components/MyForm'
 
 function App() {
   return (
     <>
-      <Adddata />
+      <TransactionForm />
     </>
   )
 }
