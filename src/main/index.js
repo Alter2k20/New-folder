@@ -21,7 +21,7 @@ function createWindow() {
   })
 
   mainWindow.on('ready-to-show', () => {
-    createFileAndFolder()
+    
     mainWindow.show()
   })
 
@@ -76,45 +76,3 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.
-
-const store = path.join(__dirname, 'storage')
-const filename = path.join(store, 'data.json')
-const saveChannel = 'set-Data'
-let existingData = ['']
-let newData = ['']
-
-function createFileAndFolder() {
-  console.log(filename)
-  if (!fs.existsSync(store)) {
-    fs.mkdirSync(store)
-    if (!fs.existsSync(filename)) {
-      fs.writeFile(filename, '', (err) => {
-        if (err) {
-          console.error(err)
-        } else {
-          console.log('File written successfully!')
-          console.log(filename)
-        }
-      })
-    }
-  }
-}
-
-function writeDataToFile(content) {
-  console.log(content)
-  fs.appendFileSync(filename, content, (err) => {
-    if (err) {
-      console.log(err)
-    }
-  })
-}
-
-ipcMain.on(saveChannel, (event, data) => {
-  existingData = fs.readFileSync(filename)
-  newData = data
-
-  
-  let jsonData = existingData
-  let json = JSON.stringify(jsonData, null, 2)
-  writeDataToFile(json)
-})

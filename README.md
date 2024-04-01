@@ -32,3 +32,15 @@ $ npm run build:mac
 # For Linux
 $ npm run build:linux
 ```
+
+```jsx
+  existingData = fs.readFileSync(filename)
+  newData = data
+
+  const name = newData.transactinId
+  const dat1 = newData.field1
+  const dat2 = newData.field2
+  existingData.name = name
+  existingData.name.data1 = dat1
+  existingData.name.dat2 = dat2
+  ```

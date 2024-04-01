@@ -1,17 +1,19 @@
 import { useState } from 'react'
 const TransactionForm = () => {
+  // const [transaction, setTransaction] = useState({})
   const [transactionID, setTransactionID] = useState(1)
   const [field1, setField1] = useState('')
   const [field2, setField2] = useState('')
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const transaction = [{ transactionID, field1, field2 }]
-    window.api.saveData(transaction[0])
-    console.log(transaction)
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const transaction = {
+      transactionID: transactionID,
+      field1: field1,
+      field2: field2
+    }
+    console.log(JSON.stringify(transaction, null, 2))
     // Here you can add the logic to update your JSON data
     setTransactionID(transactionID + 1) // Increase transactionID
-    setField1('')
-    setField2('')
   }
 
   return (

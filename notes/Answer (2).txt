@@ -1,0 +1,53 @@
+## Copilot
+When you separate your database connection code into a separate file (such as connector.js), you'll need to import and execute that file from your main application file (main.js). Let's walk through the steps:
+- Create Your Connector File (connector.js):
+    - In your project directory, create a new file named connector.js.
+    - Inside connector.js, write your MySQL connection code (similar to what you had in main.js).
+- Export the Connection Object:
+    - In connector.js, export the MySQL connection object so that you can use it in other files.
+    - Example connector.js content:
+
+// connector.js
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: null, // or your actual password
+    database: 'your-database-name'
+});
+
+module.exports = connection;
+
+- Import and Use in main.js:
+    - In your main.js (or wherever you need to use the database connection), import the exported connection object from connector.js.
+    - Example main.js content:
+
+const connection = require('./connector'); // Assuming connector.js is in the same directory
+
+// Now you can use the 'connection' object for queries, etc.
+connection.connect(function(err) {
+    if (err) {
+        console.error('Error connecting to MySQL:', err);
+        return;
+    }
+    console.log('Connected to MySQL database!');
+});
+
+// Perform your queries, etc.
+// ...
+
+// Don't forget to close the connection when done:
+connection.end(function(err) {
+    if (err) {
+        console.error('Error closing MySQL connection:', err);
+        return;
+    }
+    console.log('MySQL connection closed.');
+});
+
+- Run Your Electron Application:
+    - Start your Electron application using the command you've set up in your package.json (usually npm start).
+    - The connector.js code will be executed along with your main application code.
+Remember to replace 'localhost', 'root', null, and 'your-database-name' with your actual database credentials. By following this approach, you'll keep your code organized and maintainable! 🌟  .
+Feel free to adapt this structure based on your project's needs and preferences.
